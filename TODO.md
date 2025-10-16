@@ -1,0 +1,2 @@
+- [x] Create src/app/page.js with home page content including welcome message and link to products catalog
+- [x] Test the application by running the dev server and verifying the home page loads without 404
