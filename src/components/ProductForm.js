@@ -15,13 +15,6 @@ export default function ProductForm({ isEdit = false, productId = null, onSucces
   const [fetchLoading, setFetchLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch product data if editing
-  useEffect(() => {
-    if (isEdit && productId) {
-      fetchProduct();
-    }
-  }, [isEdit, productId, fetchProduct]);
-
   const fetchProduct = useCallback(async () => {
     setFetchLoading(true);
     setError(null);
@@ -50,6 +43,13 @@ export default function ProductForm({ isEdit = false, productId = null, onSucces
       setFetchLoading(false);
     }
   }, [productId]);
+
+  // Fetch product data if editing
+  useEffect(() => {
+    if (isEdit && productId) {
+      fetchProduct();
+    }
+  }, [isEdit, productId, fetchProduct]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
