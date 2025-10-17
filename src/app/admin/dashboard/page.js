@@ -277,7 +277,7 @@ export default function AdminDashboardPage() {
             <div className="p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-4">Konfirmasi Hapus Produk</h3>
               <p className="text-sm text-gray-500 mb-6">
-                Apakah Anda yakin ingin menghapus produk <strong>"{productToDelete.name}"</strong>? Tindakan ini tidak dapat dibatalkan.
+                Apakah Anda yakin ingin menghapus produk <strong>&ldquo;{productToDelete.name}&rdquo;</strong>? Tindakan ini tidak dapat dibatalkan.
               </p>
               <div className="flex justify-end space-x-3">
                 <button

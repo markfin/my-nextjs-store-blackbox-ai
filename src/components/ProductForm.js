@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabaseClient';
 
 export default function ProductForm({ isEdit = false, productId = null, onSuccess, onCancel }) {
@@ -15,14 +15,7 @@ export default function ProductForm({ isEdit = false, productId = null, onSucces
   const [fetchLoading, setFetchLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch product data if editing
-  useEffect(() => {
-    if (isEdit && productId) {
-      fetchProduct();
-    }
-  }, [isEdit, productId]);
-
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
     setFetchLoading(true);
     setError(null);
     try {
@@ -49,7 +42,14 @@ export default function ProductForm({ isEdit = false, productId = null, onSucces
     } finally {
       setFetchLoading(false);
     }
-  };
+  }, [productId]);
+
+  // Fetch product data if editing
+  useEffect(() => {
+    if (isEdit && productId) {
+      fetchProduct();
+    }
+  }, [isEdit, productId, fetchProduct]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
